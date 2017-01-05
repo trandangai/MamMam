@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="20dp"
         android:textColor="@color/colorPrimary"
         android:text="NHÀ HÀNG BIỂN ĐÔNG 05"
         android:textSize="30sp"
@@ -28,6 +29,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
+            android:paddingTop="20dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -52,7 +54,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -89,7 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:textColor="#000000"
         android:textSize="16sp" />
 
@@ -102,7 +104,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgViewComment"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@mipmap/comments"
@@ -116,14 +118,14 @@
             android:layout_height="40dp" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imgViewShare"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@mipmap/shares"
             android:layout_height="40dp" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/imgViewDirection"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@mipmap/directions"
@@ -134,6 +136,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:background="#ffffff"
+        android:paddingTop="20dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -145,6 +148,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/layoutHidden"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="3dp"
+                        android:src="@mipmap/nt" />
+
+                    <TextView
+                        android:id="@+id/txtTextHidden"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:text="NGỌC TRINH\n05/01/2017 10:32 AM\nBao ngon, giá bao mềm"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:src="@mipmap/fivestart" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -162,9 +193,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000000"
-                        android:text="Ngọc Trinh\n12/12/2016 10:32 AM\nBao ngon, giá bao mềm"
-                        android:textSize="18sp"
-                        android:textStyle="normal|bold" />
+                        android:text="NGỌC TRINH\n12/12/2016 10:32 AM\nBao ngon, giá bao mềm"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -189,9 +220,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000000"
-                        android:text="Hulk Hero \n11/12/2016 10:32 AM\nBao ngon, giá bao mềm"
-                        android:textSize="18sp"
-                        android:textStyle="normal|bold" />
+                        android:text="HULK HERO \n11/12/2016 10:32 AM\nBao ngon, giá bao mềm"
+                        android:textSize="16sp"
+                        android:textStyle="normal"  />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -216,9 +247,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000000"
-                        android:text="Donald Trump\n10/12/2016 10:32 AM\nBao ngon, giá bao mềm"
-                        android:textSize="18sp"
-                        android:textStyle="normal|bold" />
+                        android:text="DONALD TRUMP\n10/12/2016 10:32 AM\nBao ngon, giá bao mềm"
+                        android:textSize="16sp"
+                        android:textStyle="normal"  />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -244,8 +275,8 @@
                         android:layout_height="wrap_content"
                         android:textColor="#000000"
                         android:text="BATMAN\n09/12/2016 10:32 AM\nBao ngon, giá bao mềm"
-                        android:textSize="18sp"
-                        android:textStyle="normal|bold" />
+                        android:textSize="16sp"
+                        android:textStyle="normal"  />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -258,23 +289,20 @@
                     android:layout_width="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginRight="3dp"
                         android:src="@mipmap/iron" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000000"
-                        android:text="Iron Man\n08/12/2016 10:32 AM\nBao ngon, giá bao mềm"
-                        android:textSize="18sp"
-                        android:textStyle="normal|bold" />
-
+                        android:text="IRON MAN\n08/12/2016 10:32 AM\nBao ngon, giá bao mềm"
+                        android:textSize="16sp"
+                        android:textStyle="normal"  />
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
