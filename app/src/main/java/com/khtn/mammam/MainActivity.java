@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, DiaDiem_Details_Activity.class);
+                Intent intent = new Intent(MainActivity.this, SuggestionActivity.class);
                 startActivity(intent);
             }
         }, SPLASH_DISPLAY_LENGTH);
