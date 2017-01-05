@@ -4,4 +4,10 @@
     <string name="version">VERSION 1.0 BETA</string>
     <string name="DevTeam">ACDP</string>
     <string name="loading">Loading...</string>
+    <string name="btn_near_me">Gần tôi</string>
+    <string name="btn_promotion">Khuyến mãi</string>
+    <string name="btn_book_place">Đặt chỗ</string>
+    <string name="btn_event">Sự kiện</string>
+    <string name="btn_top_comment">Top bình luận</string>
+    <string name="btn_new">Mới</string>
 </resources>
