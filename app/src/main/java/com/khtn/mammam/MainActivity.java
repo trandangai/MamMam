@@ -11,8 +11,9 @@ import android.widget.ProgressBar;
 
 public class MainActivity extends Activity {
 
-    private final int SPLASH_DISPLAY_LENGTH = 4000;
+    private final int SPLASH_DISPLAY_LENGTH = 2000;
     private ProgressBar loading_wheel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,14 +26,11 @@ public class MainActivity extends Activity {
         loading_wheel = (ProgressBar) findViewById(R.id.progressBar1);
         loading_wheel.setVisibility(View.VISIBLE);
 
-        new Handler().postDelayed(new Runnable(){
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                Intent intent = new Intent(MainActivity.this, SuggestionActivity.class);
+                Intent intent = new Intent(MainActivity.this, DiaDiem_Details_Activity.class);
                 startActivity(intent);
-
-                MainActivity.this.finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
     }
