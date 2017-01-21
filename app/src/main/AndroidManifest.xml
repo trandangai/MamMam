@@ -24,6 +24,8 @@
             android:name=".SuggestionActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity android:name=".CommentActivity"
+        android:theme="@style/Theme.AppCompat.Dialog"></activity>
+        <activity android:name=".Comment_Evaluate_Activity"
             android:theme="@style/Theme.AppCompat.Dialog"></activity>
     </application>
 
