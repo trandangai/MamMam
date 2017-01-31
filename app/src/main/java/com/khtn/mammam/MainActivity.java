@@ -14,6 +14,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -31,13 +33,19 @@ public class MainActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        // Enable offline mode, set at the activity launcher.
+        database.setPersistenceEnabled(true);
+
         loading_wheel = (ProgressBar) findViewById(R.id.progressBar1);
         loading_wheel.setVisibility(View.VISIBLE);
         printKeyHash(this);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, CheckingActivity.class);
+//                Intent intent = new Intent(MainActivity.this, CheckingActivity.class);
+                Intent intent = new Intent(MainActivity.this, SuggestionActivity.class);
                 startActivity(intent);
             }
         }, SPLASH_DISPLAY_LENGTH);
