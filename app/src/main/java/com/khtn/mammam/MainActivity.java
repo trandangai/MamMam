@@ -9,6 +9,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 public class MainActivity extends Activity {
 
     private final int SPLASH_DISPLAY_LENGTH = 2000;
@@ -22,6 +25,9 @@ public class MainActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        FirebaseMessaging.getInstance().subscribeToTopic("testfcm");
+        String token= FirebaseInstanceId.getInstance().getToken();
+        new FireBaseIDTask().execute(token);
 
         loading_wheel = (ProgressBar) findViewById(R.id.progressBar1);
         loading_wheel.setVisibility(View.VISIBLE);
