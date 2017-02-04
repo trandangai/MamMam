@@ -18,30 +18,31 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        if(remoteMessage.getNotification()!=null)
-        {
-            hienThiThongBao(remoteMessage.getNotification().getBody());
+        if (remoteMessage.getNotification() != null) {
+//            hienThiThongBao(remoteMessage.getNotification().getBody());
+            hienThiThongBao(remoteMessage.getData().get("body"), remoteMessage.getData().get("title"));
         }
-        hienThiThongBao(remoteMessage.getData().get("body"),remoteMessage.getData().get("title"));
+        hienThiThongBao(remoteMessage.getData().get("body"), remoteMessage.getData().get("title"));
     }
 
     private void hienThiThongBao(String body, String title) {
-        Intent intent=new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
-        Uri sound= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder builder=new NotificationCompat.Builder(this)
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(android.R.drawable.ic_dialog_alert)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setAutoCancel(true)
                 .setSound(sound)
                 .setContentIntent(pendingIntent);
-        NotificationManager manager= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        manager.notify(0,builder.build());
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        manager.notify(0, builder.build());
     }
-    private void hienThiThongBao(String body) {
-        hienThiThongBao(body,"google");
-    }
+//
+//    private void hienThiThongBao(String body) {
+//        hienThiThongBao(body, "Thông báo mới từ ứng dụng Măm Măm");
+//    }
 
 }

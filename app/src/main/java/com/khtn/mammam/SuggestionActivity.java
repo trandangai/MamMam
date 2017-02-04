@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -51,13 +52,18 @@ public class SuggestionActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //TextView tv = (TextView) rowView.findViewById(R.id.tvHello);
                 //tv.setText(dataSnapshot.getValue().toString());
+                if(dataSnapshot!=null) {
+                    Log.d("sayuri", dataSnapshot.getValue().toString() + "");
+                    GenericTypeIndicator<List<Restaurant>> myType = new GenericTypeIndicator<List<Restaurant>>() {
+                    };
+                    restList = dataSnapshot.getValue(myType);
 
-                Log.d("sayuri", dataSnapshot.getValue().toString());
-                GenericTypeIndicator<List<Restaurant>> myType = new GenericTypeIndicator<List<Restaurant>>() {};
-                restList = dataSnapshot.getValue(myType);
-
-                Log.d("sayuri", restList.get(0).getRestName() + "");
-                adapter.swapItems(restList);
+                    Log.d("sayuri", restList.get(0).getRestName() + "");
+                    adapter.swapItems(restList);
+                }
+                else {
+                    Toast.makeText(SuggestionActivity.this,"Không load được dữ liệu từ server",Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

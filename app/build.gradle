@@ -37,5 +37,10 @@ dependencies {
     compile 'com.google.android.gms:play-services-base:10.0.1'
     compile 'com.google.android.gms:play-services-maps:10.0.1'
     compile 'com.google.android.gms:play-services-location:10.0.1'
+
+    //Google Map
+    compile 'com.google.android.gms:play-services-maps:10.0.1'
+    compile 'com.google.android.gms:play-services-location:10.0.1'
+    compile 'com.google.code.gson:gson:2.2.4'
 }
 apply plugin: 'com.google.gms.google-services'

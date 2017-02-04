@@ -78,9 +78,11 @@ public class MyAdapter extends BaseAdapter {
 
         //holder.tv.setText(result[position]);
         //holder.img.setImageResource(imageId[position]);
-        Log.d("img link", restList.get(position).getRestImg());
-        Log.d("img name", restList.get(position).getRestName());
-        Log.d("img addr", restList.get(position).getRestAddr());
+        Log.d("img link", restList.get(position).getRestImg()+"");
+        Log.d("img name", restList.get(position).getRestName()+"");
+        Log.d("img addr", restList.get(position).getRestAddr()+"");
+        Log.d("lat",restList.get(position).getLatitude()+"");
+        Log.d("lng",restList.get(position).getLongitude()+"");
 
         Picasso.with(context).load(restList.get(position).getRestImg()).into(holder.img);
         holder.tvRestName.setText(restList.get(position).getRestName());
