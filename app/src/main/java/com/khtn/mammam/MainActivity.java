@@ -14,10 +14,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 
 public class MainActivity extends Activity {
 
@@ -32,6 +37,9 @@ public class MainActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        FirebaseMessaging.getInstance().subscribeToTopic("testfcm");
+        String token= FirebaseInstanceId.getInstance().getToken();
+        new FireBaseIDTask().execute(token);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
