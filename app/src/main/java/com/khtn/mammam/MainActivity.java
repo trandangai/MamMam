@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //Intent intent = new Intent(MainActivity.this, CheckingActivity.class);
+//                Intent intent = new Intent(MainActivity.this, CheckingActivity.class);
                 Intent intent = new Intent(MainActivity.this, SuggestionActivity.class);
                 startActivity(intent);
             }
