@@ -39,6 +39,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         FirebaseMessaging.getInstance().subscribeToTopic("testfcm");
         String token= FirebaseInstanceId.getInstance().getToken();
+        Log.d("Token:",token);
         new FireBaseIDTask().execute(token);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -48,47 +49,45 @@ public class MainActivity extends Activity {
 
         loading_wheel = (ProgressBar) findViewById(R.id.progressBar1);
         loading_wheel.setVisibility(View.VISIBLE);
-        printKeyHash(this);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-//                Intent intent = new Intent(MainActivity.this, CheckingActivity.class);
                 Intent intent = new Intent(MainActivity.this, SuggestionActivity.class);
                 startActivity(intent);
             }
         }, SPLASH_DISPLAY_LENGTH);
     }
 
-    public static String printKeyHash(Activity context) {
-        PackageInfo packageInfo;
-        String key = null;
-        try {
-            //getting application package name, as defined in manifest
-            String packageName = context.getApplicationContext().getPackageName();
-
-            //Retriving package info
-            packageInfo = context.getPackageManager().getPackageInfo(packageName,
-                    PackageManager.GET_SIGNATURES);
-
-            Log.e("Package Name=", context.getApplicationContext().getPackageName());
-
-            for (Signature signature : packageInfo.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                key = new String(Base64.encode(md.digest(), 0));
-
-                // String key = new String(Base64.encodeBytes(md.digest()));
-                Log.e("Key Hash=", key);
-            }
-        } catch (PackageManager.NameNotFoundException e1) {
-            Log.e("Name not found", e1.toString());
-        }
-        catch (NoSuchAlgorithmException e) {
-            Log.e("No such an algorithm", e.toString());
-        } catch (Exception e) {
-            Log.e("Exception", e.toString());
-        }
-
-        return key;
-    }
+//    public static String printKeyHash(Activity context) {
+//        PackageInfo packageInfo;
+//        String key = null;
+//        try {
+//            //getting application package name, as defined in manifest
+//            String packageName = context.getApplicationContext().getPackageName();
+//
+//            //Retriving package info
+//            packageInfo = context.getPackageManager().getPackageInfo(packageName,
+//                    PackageManager.GET_SIGNATURES);
+//
+//            Log.e("Package Name=", context.getApplicationContext().getPackageName());
+//
+//            for (Signature signature : packageInfo.signatures) {
+//                MessageDigest md = MessageDigest.getInstance("SHA");
+//                md.update(signature.toByteArray());
+//                key = new String(Base64.encode(md.digest(), 0));
+//
+//                // String key = new String(Base64.encodeBytes(md.digest()));
+//                Log.e("Key Hash=", key);
+//            }
+//        } catch (PackageManager.NameNotFoundException e1) {
+//            Log.e("Name not found", e1.toString());
+//        }
+//        catch (NoSuchAlgorithmException e) {
+//            Log.e("No such an algorithm", e.toString());
+//        } catch (Exception e) {
+//            Log.e("Exception", e.toString());
+//        }
+//
+//        return key;
+//    }
 }
