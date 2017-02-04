@@ -2,26 +2,17 @@ package com.khtn.mammam;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
-
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
-
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 
 public class MainActivity extends Activity {
@@ -38,8 +29,8 @@ public class MainActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         FirebaseMessaging.getInstance().subscribeToTopic("testfcm");
-        String token= FirebaseInstanceId.getInstance().getToken();
-        Log.d("Token:",token);
+        String token = FirebaseInstanceId.getInstance().getToken();
+        Log.d("Token:", token + "");
         new FireBaseIDTask().execute(token);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
