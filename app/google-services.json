@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "440853443172",
+    "firebase_url": "https://mmfcm-365e7.firebaseio.com",
+    "project_id": "mmfcm-365e7",
+    "storage_bucket": "mmfcm-365e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440853443172:android:3f4586700f7a6a21",
+        "android_client_info": {
+          "package_name": "com.khtn.mammam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440853443172-sn0t5ciedpc4bdo3hqiuemhq897cj8mo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLu8uJMZKZWqmkoNsY-7SE2bSZQLIV1oI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
