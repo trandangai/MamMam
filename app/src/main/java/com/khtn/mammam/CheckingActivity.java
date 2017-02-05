@@ -123,10 +123,6 @@ public class CheckingActivity extends AppCompatActivity {
                 .addMedium(photo)
                 .build();
 
-//        ShareLinkContent content = new ShareLinkContent.Builder()
-//                .setContentUrl(Uri.parse("https://developers.facebook.com"))
-//                .build();
-
         ShareDialog shareDialog = new ShareDialog(CheckingActivity.this);
         shareDialog.show(shareContent, ShareDialog.Mode.AUTOMATIC);
         shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {

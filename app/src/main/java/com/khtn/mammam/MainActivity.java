@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         FirebaseMessaging.getInstance().subscribeToTopic("testfcm");
         String token= FirebaseInstanceId.getInstance().getToken();
-        Log.d("Token:",token);
+        Log.d("Token:",token+"");
         new FireBaseIDTask().execute(token);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();

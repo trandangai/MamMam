@@ -11,5 +11,5 @@
         android:layout_width="220dp"
         android:layout_height="160dp"
         android:scaleType="fitXY"
-        android:src="@mipmap/a1" />
+        android:src="@mipmap/nt" />
 </LinearLayout>

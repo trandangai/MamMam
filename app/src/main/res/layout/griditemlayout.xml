@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/a7"
+        app:srcCompat="@mipmap/nt"
         android:id="@+id/imgGridItem" />
 
     <LinearLayout

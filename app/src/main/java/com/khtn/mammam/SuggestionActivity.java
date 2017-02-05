@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 import com.khtn.mammam.pojo.Restaurant;
 
 import java.util.ArrayList;
@@ -23,18 +25,11 @@ import java.util.List;
 public class SuggestionActivity extends AppCompatActivity {
 
     private GridView gridView;
-    private static int[] prgmImages = {
-            R.mipmap.a1,
-            R.mipmap.a2,
-            R.mipmap.a3,
-            R.mipmap.a4,
-            R.mipmap.a5,
-            R.mipmap.a6,
-            R.mipmap.a7};
 
     private List<Restaurant> restList = new ArrayList<>();
     private MyAdapter adapter;
-
+    private GenericTypeIndicator<List<Restaurant>> myType;
+    private Button btnGanToi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +49,7 @@ public class SuggestionActivity extends AppCompatActivity {
                 //tv.setText(dataSnapshot.getValue().toString());
                 if(dataSnapshot!=null) {
                     Log.d("sayuri", dataSnapshot.getValue().toString() + "");
-                    GenericTypeIndicator<List<Restaurant>> myType = new GenericTypeIndicator<List<Restaurant>>() {
+                    myType = new GenericTypeIndicator<List<Restaurant>>() {
                     };
                     restList = dataSnapshot.getValue(myType);
 
@@ -78,6 +73,18 @@ public class SuggestionActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(SuggestionActivity.this,DiaDiem_Details_Activity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("resttrans",restList.get(i));
+                intent.putExtra("bundlerest",bundle);
+                startActivity(intent);
+            }
+        });
+
+        btnGanToi = (Button) findViewById(R.id.btnGanToi);
+        btnGanToi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SuggestionActivity.this, DiaDiemGanToiActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,10 +1,12 @@
 package com.khtn.mammam.pojo;
 
+import java.io.Serializable;
+
 /**
  * Created by Sayuri Kurata on 2017/01/31.
  */
 
-public class Restaurant {
+public class Restaurant implements Serializable{
 
     private String restAddr;
     private String restImg;
