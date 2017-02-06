@@ -1,20 +1,16 @@
 package com.khtn.mammam;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -24,7 +20,10 @@ import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.khtn.mammam.pojo.Comment;
+import com.khtn.mammam.pojo.Rating;
 import com.khtn.mammam.pojo.Restaurant;
 import com.squareup.picasso.Picasso;
 
@@ -36,6 +35,7 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private ImageView imgShare, imgDirection, imgComment,imgCheckin,imgHome;
     private Restaurant restaurant;
+    private int restId;
     private TextView txtRestName, txtRestAddrr;
     private ListView lvListComment;
     private ArrayAdapter arrayAdapter;
@@ -53,6 +53,7 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundlerest");
+        restId = intent.getIntExtra("restId", 0);
         restaurant = (Restaurant) bundle.getSerializable("resttrans");
 
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -154,6 +155,41 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
         if(requestCode==88 && data!=null)
         {
             String noidung = data.getStringExtra("noidungbinhluan");
+            Log.d("comment ; rating", noidung);
+
+            String[] noiDungSplit = noidung.split(";");
+            String newCmt = noiDungSplit[0];
+            String newCmter = "Anonymous";
+            int newRatingScore = Math.round(Float.parseFloat(noiDungSplit[1]));
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference commentRef = database.getReference("restaurants").child(String.valueOf(restId));
+            Log.d("rest detail link", commentRef + "");
+
+            Restaurant tempRest = restaurant;
+            tempRest.setRestTopComment(restaurant.getRestTopComment() + ";" + newCmt);
+            tempRest.setRestTopCommenter(restaurant.getRestTopCommenter() + ";" + newCmter);
+
+            Log.d("rating user", restaurant.getRating().getNumOfUser() + "");
+            Log.d("rating score", restaurant.getRating().getScore() + "");
+            // ========== Recalculate rating ==========
+            Rating newRating = restaurant.getRating();
+            newRating.setNumOfUser(restaurant.getRating().getNumOfUser() + 1);
+
+            newRatingScore = newRatingScore + restaurant.getRating().getScore();
+            newRating.setScore(newRatingScore);
+            // ========================================
+
+
+            tempRest.setRating(newRating);
+
+            Log.d("new cmt", tempRest.getRestTopComment() + "");
+            Log.d("new rating user", tempRest.getRating().getNumOfUser() + "");
+            Log.d("new rating score", tempRest.getRating().getScore() + "");
+
+            commentRef.setValue(tempRest);
+            listComment.add(new Comment(newCmt, newCmter));
+            arrayAdapter.notifyDataSetChanged();
         }
     }
 

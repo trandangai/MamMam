@@ -16,7 +16,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 import com.khtn.mammam.pojo.Restaurant;
 
 import java.util.ArrayList;
@@ -76,6 +75,7 @@ public class SuggestionActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("resttrans",restList.get(i));
                 intent.putExtra("bundlerest",bundle);
+                intent.putExtra("restId",i);
                 startActivity(intent);
             }
         });
