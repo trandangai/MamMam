@@ -13,8 +13,10 @@ public class Restaurant implements Serializable{
     private String restName;
     private String restTopComment;
     private String restTopCommenter;
-    private String Latitude;
-    private String Longitude;
+    private Double Latitude;
+    private Double Longitude;
+    private String restDetailLink;
+    private Rating rating;
 
     public String getRestName() {
         return restName;
@@ -56,19 +58,36 @@ public class Restaurant implements Serializable{
         this.restTopComment = restTopComment;
     }
 
-    public String getLatitude() {
-        return Latitude;
+
+    public String getRestDetailLink() {
+        return restDetailLink;
     }
 
-    public void setLatitude(String latitude) {
-        Latitude = latitude;
+    public void setRestDetailLink(String restDetailLink) {
+        this.restDetailLink = restDetailLink;
     }
 
-    public String getLongitude() {
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public Double getLongitude() {
         return Longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(Double longitude) {
         Longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return Latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        Latitude = latitude;
     }
 }

@@ -70,7 +70,7 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ShareLinkContent content = new ShareLinkContent.Builder()
-                .setContentUrl(Uri.parse("https://www.foody.vn/ho-chi-minh/lau-duoi-bo-a-tai"))
+                .setContentUrl(Uri.parse(restaurant.getRestDetailLink()+""))
                 .build();
 
                 ShareDialog shareDialog = new ShareDialog(DiaDiem_Details_Activity.this);

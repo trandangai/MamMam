@@ -76,7 +76,8 @@
         <activity android:name=".CheckingActivity" />
 
 
-        <activity android:name=".DiaDiemGanToiActivity"></activity>
+        <activity android:name=".DiaDiemGanToiActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
     </application>
 
 </manifest>

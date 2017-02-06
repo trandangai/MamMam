@@ -35,8 +35,6 @@ dependencies {
     compile 'com.google.firebase:firebase-auth:10.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.android.gms:play-services-base:10.0.1'
-    compile 'com.google.android.gms:play-services-maps:10.0.1'
-    compile 'com.google.android.gms:play-services-location:10.0.1'
 
     //Google Map
     compile 'com.google.android.gms:play-services-maps:10.0.1'
