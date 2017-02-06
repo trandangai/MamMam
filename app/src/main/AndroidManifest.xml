@@ -55,9 +55,6 @@
         <activity
             android:name=".SuggestionActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-        <activity
-            android:name=".CommentActivity"
-            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>

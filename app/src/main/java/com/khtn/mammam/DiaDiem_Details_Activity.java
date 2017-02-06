@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -61,7 +62,7 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
         txtRestAddrr = (TextView) findViewById(R.id.txtRestAdrr);
 
         txtRestName.setText(restaurant.getRestName().toString());
-        txtRestAddrr.setText(restaurant.getRestAddr().toString());
+        txtRestAddrr.setText("Địa chỉ : "+restaurant.getRestAddr().toString());
 
         scrollViewgroup = (ViewGroup) findViewById(R.id.viewgroup);
         for (int i = 0; i < 6; i++) {
@@ -117,7 +118,8 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
         imgComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent in = new Intent(DiaDiem_Details_Activity.this,Comment_Evaluate_Activity.class);
+                startActivityForResult(in,88);
             }
         });
 
@@ -131,6 +133,11 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==88 && data!=null)
+        {
+            String noidung = data.getStringExtra("noidungbinhluan");
+        }
     }
 
     private void BindingDataToListComment()

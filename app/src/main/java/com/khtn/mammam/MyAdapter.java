@@ -57,13 +57,14 @@ public class MyAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    private class Holder
-    {
+    private class Holder {
         TextView tvRestName;
         TextView tvRestAddr;
         TextView tvTopCommenter;
+        TextView tvRatingPoint;
         ImageView img;
     }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
@@ -74,23 +75,35 @@ public class MyAdapter extends BaseAdapter {
         holder.tvRestName = (TextView) rowView.findViewById(R.id.tvRestName);
         holder.tvRestAddr = (TextView) rowView.findViewById(R.id.tvRestAddr);
         holder.tvTopCommenter = (TextView) rowView.findViewById(R.id.tvTopCommenter);
+        holder.tvRatingPoint = (TextView) rowView.findViewById(R.id.txtPointRating);
         holder.img = (ImageView) rowView.findViewById(R.id.imgGridItem);
 
         //holder.tv.setText(result[position]);
         //holder.img.setImageResource(imageId[position]);
-        Log.d("img link", restList.get(position).getRestImg()+"");
-        Log.d("img name", restList.get(position).getRestName()+"");
-        Log.d("img addr", restList.get(position).getRestAddr()+"");
-        Log.d("lat",restList.get(position).getLatitude()+"");
-        Log.d("lng",restList.get(position).getLongitude()+"");
-        Log.d("rest details link",restList.get(position).getRestDetailLink()+"");
-        Log.d("score",restList.get(position).getRating().getScore()+"");
-        Log.d("numofUser",restList.get(position).getRating().getNumOfUser()+"");
+        Log.d("img link", restList.get(position).getRestImg() + "");
+        Log.d("img name", restList.get(position).getRestName() + "");
+        Log.d("img addr", restList.get(position).getRestAddr() + "");
+        Log.d("lat", restList.get(position).getLatitude() + "");
+        Log.d("lng", restList.get(position).getLongitude() + "");
+        Log.d("rest details link", restList.get(position).getRestDetailLink() + "");
+        Log.d("score", restList.get(position).getRating().getScore() + "");
+        Log.d("numofUser", restList.get(position).getRating().getNumOfUser() + "");
 
         Picasso.with(context).load(restList.get(position).getRestImg()).into(holder.img);
         holder.tvRestName.setText(restList.get(position).getRestName());
         holder.tvRestAddr.setText(restList.get(position).getRestAddr());
-        holder.tvTopCommenter.setText(restList.get(position).getRestTopCommenter());
+        holder.tvTopCommenter.setText(restList.get(position).getRestTopCommenter().split(";")[0]);
+
+        double ratingpoint = 0;
+        int score = restList.get(position).getRating().getScore();
+        if (score == 0) {
+            ratingpoint = 0;
+            holder.tvRatingPoint.setText(ratingpoint+"");
+        } else {
+            int numofUserComment = restList.get(position).getRating().getNumOfUser();
+            String strDouble = String.format("%.1f", (double)score/numofUserComment);
+            holder.tvRatingPoint.setText(strDouble);
+        }
 
         return rowView;
     }

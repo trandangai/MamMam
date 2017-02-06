@@ -63,12 +63,12 @@ public class Comment_Evaluate_Activity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String Noidung = txtNoiDung.getText().toString() +" , "+ ratingBar.getRating();
+                String Noidung = txtNoiDung.getText().toString() +";"+ ratingBar.getRating();
                 Intent i = new Intent();
                 i.putExtra("noidungbinhluan",Noidung);
                 setResult(88,i);
                 finish();
-                Toast.makeText(Comment_Evaluate_Activity.this, String.valueOf("Noi dung: " + Noidung), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Comment_Evaluate_Activity.this, String.valueOf("Noi dung: " + Noidung), Toast.LENGTH_SHORT).show();
 
             }
 

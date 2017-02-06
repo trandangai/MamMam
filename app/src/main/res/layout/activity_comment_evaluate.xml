@@ -11,7 +11,7 @@
 
 
     <TextView
-        android:text="Nội dung bạn muốn bình luận"
+        android:text="Nhập nội dung bình luận"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
@@ -29,11 +29,11 @@
         android:id="@+id/editTextNoiDung" />
 
     <TextView
-        android:text="Đánh giá:"
+        android:text="Đánh giá địa điểm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lblRateMe"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:gravity="center"
         android:textStyle="normal|bold" />
 
@@ -62,6 +62,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
     <LinearLayout
+        android:paddingTop="10dp"
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,7 +77,7 @@
             android:id="@+id/btnXacNhan" />
         <Button
             android:paddingTop="10dp"
-            android:text="Huỷ"
+            android:text="Hủy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnHuy" />
