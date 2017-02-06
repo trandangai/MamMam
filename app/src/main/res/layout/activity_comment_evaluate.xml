@@ -70,7 +70,7 @@
 
         <Button
             android:paddingTop="10dp"
-            android:text="OK"
+            android:text="Đồng ý"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnXacNhan" />
