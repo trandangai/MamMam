@@ -6,10 +6,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
@@ -20,18 +23,22 @@ import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.khtn.mammam.pojo.Comment;
 import com.khtn.mammam.pojo.Restaurant;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class DiaDiem_Details_Activity extends AppCompatActivity {
 
     private ViewGroup scrollViewgroup;
-    private ImageView icon;
     private CallbackManager callbackManager;
     private ImageView imgShare, imgDirection, imgComment;
     private Restaurant restaurant;
-    private LinearLayout layoutHidden;
-    private TextView txtRestName, txtRestAddrr, txtTextMota;
+    private TextView txtRestName, txtRestAddrr;
+    private ListView lvListComment;
+    private ArrayAdapter arrayAdapter;
+    private ArrayList<Comment> listComment;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -113,10 +120,28 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
 
             }
         });
+
+        lvListComment = (ListView) findViewById(R.id.lvListComment);
+        listComment = new ArrayList<>();
+        arrayAdapter = new ArrayAdapter<Comment>(this,android.R.layout.simple_list_item_1,listComment);
+        lvListComment.setAdapter(arrayAdapter);
+        BindingDataToListComment();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void BindingDataToListComment()
+    {
+        String[] listCommenters = restaurant.getRestTopCommenter().split(";");
+        String[] listComments = restaurant.getRestTopComment().split(";");
+
+        for(int i=0;i<listComments.length;i++)
+        {
+            listComment.add(new Comment(listCommenters[i]+"",listComments[i]+""));
+        }
+        arrayAdapter.notifyDataSetChanged();
     }
 }
