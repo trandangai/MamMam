@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:srcCompat="@mipmap/home"
-            android:id="@+id/imageView6"
+            android:id="@+id/imgHome"
             android:layout_weight="1" />
         <ImageView
             android:id="@+id/imgViewComment"
@@ -88,7 +88,7 @@
             android:layout_height="30dp" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imgCheckin"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@mipmap/likes"

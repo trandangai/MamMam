@@ -34,7 +34,7 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
 
     private ViewGroup scrollViewgroup;
     private CallbackManager callbackManager;
-    private ImageView imgShare, imgDirection, imgComment;
+    private ImageView imgShare, imgDirection, imgComment,imgCheckin,imgHome;
     private Restaurant restaurant;
     private TextView txtRestName, txtRestAddrr;
     private ListView lvListComment;
@@ -99,6 +99,23 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
 
                     }
                 });
+            }
+        });
+
+        imgCheckin = (ImageView) findViewById(R.id.imgCheckin);
+        imgCheckin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DiaDiem_Details_Activity.this,CheckingActivity.class);
+                startActivity(i);
+            }
+        });
+
+        imgHome = (ImageView) findViewById(R.id.imgHome);
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

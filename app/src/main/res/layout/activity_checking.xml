@@ -5,27 +5,39 @@
     android:id="@+id/activity_checking"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
     tools:context="com.khtn.mammam.CheckingActivity">
 
 
     <ImageView
+        android:id="@+id/imgViewCheckin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/iron"
-        android:id="@+id/imgViewCheckin" />
+        app:srcCompat="@mipmap/ic_launcher" />
 
-    <Button
-        android:text="Checkin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnPostChecking"
-        android:layout_gravity="center"
-        android:layout_marginBottom="38dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btnPostChecking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check-in Địa Điểm Này" />
+
+        <Button
+            android:id="@+id/btnHuyCheckin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hủy" />
+    </LinearLayout>
+
 </LinearLayout>

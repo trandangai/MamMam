@@ -140,8 +140,8 @@ public class DiaDiemGanToiActivity extends AppCompatActivity implements Location
 
     @Override
     public void onLocationChanged(Location location) {
-        GotoMyCurrentLocation();
-        CacDiaDiemXungQuanh();
+//        GotoMyCurrentLocation();
+//        CacDiaDiemXungQuanh();
     }
 
     @Override
