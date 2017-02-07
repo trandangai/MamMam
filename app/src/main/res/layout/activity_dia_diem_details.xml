@@ -91,7 +91,7 @@
             android:id="@+id/imgCheckin"
             android:layout_width="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@mipmap/likes"
+            app:srcCompat="@mipmap/icon_checkin"
             android:layout_height="30dp" />
 
         <ImageView
