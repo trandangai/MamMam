@@ -53,28 +53,28 @@
             android:layout_height="match_parent"
             android:padding="4dp"
             app:srcCompat="@mipmap/icon_save"
-            android:id="@+id/imageView7"
+            android:id="@+id/ivSave"
             android:layout_weight="1" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:srcCompat="@mipmap/searching"
-            android:id="@+id/imageView8"
+            android:id="@+id/ivSearch"
             android:layout_weight="1" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:srcCompat="@mipmap/notification"
-            android:id="@+id/imageView9"
+            android:id="@+id/ivNotification"
             android:layout_weight="1" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:srcCompat="@mipmap/user"
-            android:id="@+id/imageView10"
+            android:id="@+id/ivUserProfile"
             android:layout_weight="1" />
 
     </LinearLayout>

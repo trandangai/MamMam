@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +30,8 @@ public class SuggestionActivity extends AppCompatActivity {
     private MyAdapter adapter;
     private GenericTypeIndicator<List<Restaurant>> myType;
     private Button btnGanToi;
+    private ImageView ivSearch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,5 +91,34 @@ public class SuggestionActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ivSearch = (ImageView) findViewById(R.id.ivSearch);
+        ivSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(SuggestionActivity.this, SearchRestActivity.class);
+                startActivityForResult(in, 88);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == 88 && data != null) {
+
+            String noidung = data.getStringExtra("keywordRest");
+            Log.d("keyword", noidung + "");
+            List<Restaurant> resultList = new ArrayList<>();
+
+            for (int i = 0; i < restList.size(); i++) {
+                if(restList.get(i).getRestName().contains(noidung) || restList.get(i).getRestAddr().contains(noidung)) {
+                    resultList.add(restList.get(i));
+                }
+            }
+
+            adapter.swapItems(resultList);
+        }
     }
 }

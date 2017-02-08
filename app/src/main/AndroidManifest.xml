@@ -70,6 +70,9 @@
         <activity
             android:name=".Comment_Evaluate_Activity"
             android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".SearchRestActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".CheckingActivity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
 
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_comment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.khtn.mammam.Comment_Evaluate_Activity"
+    android:weightSum="1">
+
+
+    <TextView
+        android:text="Nhập từ khóa tìm kiếm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textStyle="normal|bold" />
+
+    <EditText
+        android:padding="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:hint="Nhập từ khóa tìm kiếm"
+        android:id="@+id/edtKeyword" />
+
+    <LinearLayout
+        android:paddingTop="10dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:paddingTop="10dp"
+            android:text="Đồng ý"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnXacNhan" />
+        <Button
+            android:paddingTop="10dp"
+            android:text="Hủy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnHuy" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

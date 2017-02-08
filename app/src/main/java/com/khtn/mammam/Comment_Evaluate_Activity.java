@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by chieclamuadong on 1/21/2017.
@@ -66,7 +65,7 @@ public class Comment_Evaluate_Activity extends AppCompatActivity {
                 String Noidung = txtNoiDung.getText().toString() +";"+ ratingBar.getRating();
                 Intent i = new Intent();
                 i.putExtra("noidungbinhluan",Noidung);
-                setResult(88,i);
+                setResult(88, i);
                 finish();
                 //Toast.makeText(Comment_Evaluate_Activity.this, String.valueOf("Noi dung: " + Noidung), Toast.LENGTH_SHORT).show();
 
@@ -78,7 +77,7 @@ public class Comment_Evaluate_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
-                setResult(88,i);
+                setResult(99, i);
                 finish();
             }
 

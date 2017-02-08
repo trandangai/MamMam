@@ -137,7 +137,7 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent in = new Intent(DiaDiem_Details_Activity.this,Comment_Evaluate_Activity.class);
-                startActivityForResult(in,88);
+                startActivityForResult(in, 88);
             }
         });
 
@@ -152,44 +152,46 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==88 && data!=null)
+        if(resultCode == 88 && data != null)
         {
             String noidung = data.getStringExtra("noidungbinhluan");
-            Log.d("comment ; rating", noidung);
+            Log.d("comment ; rating", noidung + "");
 
-            String[] noiDungSplit = noidung.split(";");
-            String newCmt = noiDungSplit[0];
-            String newCmter = "Anonymous";
-            int newRatingScore = Math.round(Float.parseFloat(noiDungSplit[1]));
+            if(noidung != null && !noidung.equals("")) {
+                String[] noiDungSplit = noidung.split(";");
+                String newCmt = noiDungSplit[0];
+                String newCmter = "Anonymous";
+                int newRatingScore = Math.round(Float.parseFloat(noiDungSplit[1]));
 
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference commentRef = database.getReference("restaurants").child(String.valueOf(restId));
-            Log.d("rest detail link", commentRef + "");
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference commentRef = database.getReference("restaurants").child(String.valueOf(restId));
+                Log.d("rest detail link", commentRef + "");
 
-            Restaurant tempRest = restaurant;
-            tempRest.setRestTopComment(restaurant.getRestTopComment() + ";" + newCmt);
-            tempRest.setRestTopCommenter(restaurant.getRestTopCommenter() + ";" + newCmter);
+                Restaurant tempRest = restaurant;
+                tempRest.setRestTopComment(restaurant.getRestTopComment() + ";" + newCmt);
+                tempRest.setRestTopCommenter(restaurant.getRestTopCommenter() + ";" + newCmter);
 
-            Log.d("rating user", restaurant.getRating().getNumOfUser() + "");
-            Log.d("rating score", restaurant.getRating().getScore() + "");
-            // ========== Recalculate rating ==========
-            Rating newRating = restaurant.getRating();
-            newRating.setNumOfUser(restaurant.getRating().getNumOfUser() + 1);
+                Log.d("rating user", restaurant.getRating().getNumOfUser() + "");
+                Log.d("rating score", restaurant.getRating().getScore() + "");
+                // ========== Recalculate rating ==========
+                Rating newRating = restaurant.getRating();
+                newRating.setNumOfUser(restaurant.getRating().getNumOfUser() + 1);
 
-            newRatingScore = newRatingScore + restaurant.getRating().getScore();
-            newRating.setScore(newRatingScore);
-            // ========================================
+                newRatingScore = newRatingScore + restaurant.getRating().getScore();
+                newRating.setScore(newRatingScore);
+                // ========================================
 
 
-            tempRest.setRating(newRating);
+                tempRest.setRating(newRating);
 
-            Log.d("new cmt", tempRest.getRestTopComment() + "");
-            Log.d("new rating user", tempRest.getRating().getNumOfUser() + "");
-            Log.d("new rating score", tempRest.getRating().getScore() + "");
+                Log.d("new cmt", tempRest.getRestTopComment() + "");
+                Log.d("new rating user", tempRest.getRating().getNumOfUser() + "");
+                Log.d("new rating score", tempRest.getRating().getScore() + "");
 
-            commentRef.setValue(tempRest);
-            listComment.add(new Comment(newCmt, newCmter));
-            arrayAdapter.notifyDataSetChanged();
+                commentRef.setValue(tempRest);
+                listComment.add(new Comment(newCmt, newCmter));
+                arrayAdapter.notifyDataSetChanged();
+            }
         }
     }
 
