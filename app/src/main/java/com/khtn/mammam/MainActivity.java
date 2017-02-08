@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.khtn.mammam.utils.FirebaseUtil;
 
 
 public class MainActivity extends Activity {
@@ -33,10 +34,7 @@ public class MainActivity extends Activity {
         Log.d("Token:",token+"");
         new FireBaseIDTask().execute(token);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-        // Enable offline mode, set at the activity launcher.
-        database.setPersistenceEnabled(true);
+        FirebaseDatabase database = FirebaseUtil.getDatabase();
 
         loading_wheel = (ProgressBar) findViewById(R.id.progressBar1);
         loading_wheel.setVisibility(View.VISIBLE);

@@ -2,7 +2,6 @@ package com.khtn.mammam;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +52,8 @@ public class MyAdapter extends BaseAdapter {
     }
 
     public void swapItems(List<Restaurant> restList) {
-        this.restList = restList;
+        this.restList.clear();
+        this.restList.addAll(restList);
         notifyDataSetChanged();
     }
 
@@ -80,14 +80,14 @@ public class MyAdapter extends BaseAdapter {
 
         //holder.tv.setText(result[position]);
         //holder.img.setImageResource(imageId[position]);
-        Log.d("img link", restList.get(position).getRestImg() + "");
-        Log.d("img name", restList.get(position).getRestName() + "");
-        Log.d("img addr", restList.get(position).getRestAddr() + "");
-        Log.d("lat", restList.get(position).getLatitude() + "");
-        Log.d("lng", restList.get(position).getLongitude() + "");
-        Log.d("rest details link", restList.get(position).getRestDetailLink() + "");
-        Log.d("score", restList.get(position).getRating().getScore() + "");
-        Log.d("numofUser", restList.get(position).getRating().getNumOfUser() + "");
+        //Log.d("img link", restList.get(position).getRestImg() + "");
+        //Log.d("img name", restList.get(position).getRestName() + "");
+        //Log.d("img addr", restList.get(position).getRestAddr() + "");
+        //Log.d("lat", restList.get(position).getLatitude() + "");
+        //Log.d("lng", restList.get(position).getLongitude() + "");
+        //Log.d("rest details link", restList.get(position).getRestDetailLink() + "");
+        //Log.d("score", restList.get(position).getRating().getScore() + "");
+        //Log.d("numofUser", restList.get(position).getRating().getNumOfUser() + "");
 
         Picasso.with(context).load(restList.get(position).getRestImg()).into(holder.img);
         holder.tvRestName.setText(restList.get(position).getRestName());

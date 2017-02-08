@@ -24,15 +24,15 @@ public class SearchRestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_restaurant);
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
+        btnXacNhan= (Button) findViewById(R.id.btnXacNhan);
+        btnHuy= (Button)findViewById(R.id.btnHuy);
+        edtKeyword = (EditText)findViewById(R.id.edtKeyword);
+
         addListenerOnButton();
 
     }
 
     public void addListenerOnButton() {
-
-        btnXacNhan= (Button) findViewById(R.id.btnXacNhan);
-        btnHuy= (Button)findViewById(R.id.btnHuy);
-        edtKeyword = (EditText)findViewById(R.id.edtKeyword);
 
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
 
