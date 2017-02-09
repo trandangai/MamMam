@@ -160,7 +160,7 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
             if(noidung != null && !noidung.equals("")) {
                 String[] noiDungSplit = noidung.split(";");
                 String newCmt = noiDungSplit[0];
-                String newCmter = "Anonymous";
+                String newCmter = noiDungSplit[2];
                 int newRatingScore = Math.round(Float.parseFloat(noiDungSplit[1]));
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
