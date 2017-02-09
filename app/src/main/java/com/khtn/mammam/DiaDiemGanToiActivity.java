@@ -184,9 +184,11 @@ public class DiaDiemGanToiActivity extends AppCompatActivity implements Location
     @Override
     public void onInfoWindowClick(Marker marker) {
         Restaurant restaurant = null;
+        int vitri =0;
         for (int i = 0; i < listRest.size(); i++) {
             if (listRest.get(i).getRestName().equals(marker.getTitle())) {
                 restaurant = listRest.get(i);
+                vitri = i;
                 break;
             }
         }
@@ -195,6 +197,7 @@ public class DiaDiemGanToiActivity extends AppCompatActivity implements Location
             Bundle bundle = new Bundle();
             bundle.putSerializable("resttrans", restaurant);
             intent.putExtra("bundlerest", bundle);
+            intent.putExtra("restId",vitri);
             startActivity(intent);
         } else {
             Toast.makeText(DiaDiemGanToiActivity.this, "NULL REST", Toast.LENGTH_LONG).show();
