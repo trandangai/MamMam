@@ -1,7 +1,9 @@
 package com.khtn.mammam;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -41,11 +44,23 @@ public class MainActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, SuggestionActivity.class);
-                startActivity(intent);
-                finish();
+                if(isInternetNetworkAccess()) {
+                    Toast.makeText(MainActivity.this,"Kiểm tra kết nối Internet thành công",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this, SuggestionActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    Toast.makeText(MainActivity.this,"Bạn chưa kết nối internet, vui lòng kiểm tra lại",Toast.LENGTH_LONG).show();
+                }
             }
         }, SPLASH_DISPLAY_LENGTH);
+    }
+
+    private boolean isInternetNetworkAccess()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo()!=null;
     }
 
 //    public static String printKeyHash(Activity context) {

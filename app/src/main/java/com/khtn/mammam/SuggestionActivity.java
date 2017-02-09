@@ -2,6 +2,7 @@ package com.khtn.mammam;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +27,7 @@ import java.util.List;
 public class SuggestionActivity extends AppCompatActivity {
 
     private GridView gridView;
-
+    boolean doubleBackToExitPressedOnce = false;
     private List<Restaurant> restList = new ArrayList<>();
     private List<Restaurant> searchResultList = new ArrayList<>();
     private String searchKeyword = "";
@@ -165,7 +166,21 @@ public class SuggestionActivity extends AppCompatActivity {
             searchRest("");
         }
         else {
-            super.onBackPressed();
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Bấm back lần nữa để thoát ứng dụng", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce=false;
+                }
+            }, 2000);
         }
     }
 }
