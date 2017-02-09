@@ -99,7 +99,14 @@ public class SuggestionActivity extends AppCompatActivity {
                 }
                 bundle.putSerializable("resttrans",restForsend);
                 intent.putExtra("bundlerest",bundle);
-                intent.putExtra("restId",i);
+                for(int x=0;x<restList.size();x++)
+                {
+                    if(restList.get(x).getRestName().equals(restForsend.getRestName()))
+                    {
+                        intent.putExtra("restId",x);
+                        break;
+                    }
+                }
                 startActivity(intent);
             }
         });

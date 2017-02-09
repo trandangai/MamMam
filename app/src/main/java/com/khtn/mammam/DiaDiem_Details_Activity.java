@@ -189,7 +189,7 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
                 Log.d("new rating score", tempRest.getRating().getScore() + "");
 
                 commentRef.setValue(tempRest);
-                listComment.add(new Comment(newCmt, newCmter));
+                listComment.add(new Comment(newCmter, newCmt));
                 arrayAdapter.notifyDataSetChanged();
             }
         }
