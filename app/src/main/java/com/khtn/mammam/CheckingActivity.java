@@ -46,7 +46,7 @@ public class CheckingActivity extends AppCompatActivity {
     private LoginManager loginManager;
     protected static final int CAMERA_REQUEST = 99;
     private Bitmap bmp;
-    private Button btnCheckin;
+    private Button btnCheckin,btnHuyCheckin;
     private ImageView imageViewCheckin;
     private Uri file;
     private String imgPath;
@@ -75,7 +75,13 @@ public class CheckingActivity extends AppCompatActivity {
                 sharePhotoToFacebook();
             }
         });
-
+        btnHuyCheckin = (Button) findViewById(R.id.btnHuyCheckin);
+        btnHuyCheckin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         List<String> permissionNeeds = Arrays.asList("publish_actions");
         loginManager = LoginManager.getInstance();
 
@@ -141,7 +147,7 @@ public class CheckingActivity extends AppCompatActivity {
                                 finish();
                             }
                         })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setIcon(R.mipmap.icon_checkin)
                         .show();
             }
 

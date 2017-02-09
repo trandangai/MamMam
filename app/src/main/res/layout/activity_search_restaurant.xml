@@ -9,9 +9,35 @@
     tools:context="com.khtn.mammam.Comment_Evaluate_Activity"
     android:weightSum="1">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="#cc0000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:text="M"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="#ffffff"
+            android:layout_weight="0.7"
+            android:layout_marginLeft="10dp"
+            android:textSize="30sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:text="Tìm Địa Điểm"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:textSize="30sp"
+            android:layout_marginLeft="0dp"
+            android:textStyle="normal|bold" />
+    </LinearLayout>
     <TextView
-        android:text="Nhập từ khóa tìm kiếm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
@@ -25,7 +51,7 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:hint="Nhập từ khóa tìm kiếm"
+        android:hint="Nhập từ khóa tìm kiếm : Ốc, Quận 5..."
         android:id="@+id/edtKeyword" />
 
     <LinearLayout
@@ -39,12 +65,14 @@
         <Button
             android:paddingTop="10dp"
             android:text="Đồng ý"
+            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnXacNhan" />
         <Button
             android:paddingTop="10dp"
             android:text="Hủy"
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnHuy" />

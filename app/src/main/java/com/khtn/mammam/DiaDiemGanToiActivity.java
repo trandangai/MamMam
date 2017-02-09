@@ -81,7 +81,7 @@ public class DiaDiemGanToiActivity extends AppCompatActivity implements Location
                 GotoMyCurrentLocation();
                 CacDiaDiemXungQuanh();
             }
-        }, 1000);
+        }, 2000);
 
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.mapnearby);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
@@ -112,6 +112,7 @@ public class DiaDiemGanToiActivity extends AppCompatActivity implements Location
             ActivityCompat.requestPermissions(DiaDiemGanToiActivity.this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Request_Code);
         }
+
         LocationManager locationManager = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 1000 * 60 * 1, DiaDiemGanToiActivity.this);
         Criteria criteria = new Criteria();
@@ -135,7 +136,6 @@ public class DiaDiemGanToiActivity extends AppCompatActivity implements Location
         } else {
             Toast.makeText(DiaDiemGanToiActivity.this, "null location", Toast.LENGTH_LONG).show();
         }
-
     }
 
     @Override
@@ -162,9 +162,11 @@ public class DiaDiemGanToiActivity extends AppCompatActivity implements Location
     private void CacDiaDiemXungQuanh() {
         ArrayList<Restaurant> listNearby = new ArrayList<>();
         for (Restaurant restaurant : listRest) {
-            LatLng latlng = new LatLng(restaurant.getLatitude(), restaurant.getLongitude());
-            if (DistanceMapUtils.GetDistance(currentLocation, latlng) <= 2000) {
-                listNearby.add(restaurant);
+            if (restaurant.getLatitude() != null && restaurant.getLongitude() != null) {
+                LatLng latlng = new LatLng(restaurant.getLatitude(), restaurant.getLongitude());
+                if (DistanceMapUtils.GetDistance(currentLocation, latlng) <= 2000) {
+                    listNearby.add(restaurant);
+                }
             }
         }
 
@@ -188,15 +190,13 @@ public class DiaDiemGanToiActivity extends AppCompatActivity implements Location
                 break;
             }
         }
-        if(restaurant!=null) {
+        if (restaurant != null) {
             Intent intent = new Intent(DiaDiemGanToiActivity.this, DiaDiem_Details_Activity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("resttrans", restaurant);
             intent.putExtra("bundlerest", bundle);
             startActivity(intent);
-        }
-        else
-        {
+        } else {
             Toast.makeText(DiaDiemGanToiActivity.this, "NULL REST", Toast.LENGTH_LONG).show();
         }
     }
