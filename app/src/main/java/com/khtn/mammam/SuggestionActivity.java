@@ -11,7 +11,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +35,7 @@ public class SuggestionActivity extends AppCompatActivity {
     private Button btnGanToi;
     private ImageView ivSearch;
     private TextView tvSearchKeyword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,16 @@ public class SuggestionActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(SuggestionActivity.this, DiaDiem_Details_Activity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("resttrans",restList.get(i));
+                Restaurant restForsend;
+                if(adapter.getCount()<restList.size())
+                {
+                    restForsend = searchResultList.get(i);
+                }
+                else
+                {
+                    restForsend = restList.get(i);
+                }
+                bundle.putSerializable("resttrans",restForsend);
                 intent.putExtra("bundlerest",bundle);
                 intent.putExtra("restId",i);
                 startActivity(intent);
@@ -135,9 +144,11 @@ public class SuggestionActivity extends AppCompatActivity {
         }
         else {
             tvSearchKeyword.setVisibility(View.VISIBLE);
-            tvSearchKeyword.setText("Tìm với từ khóa \"" + keyword + "\"");
+            tvSearchKeyword.setText("=> Tìm với từ khóa \"" + keyword + "\"");
+            keyword = keyword.toLowerCase();
             for (int i = 0; i < restList.size(); i++) {
-                if (restList.get(i).getRestName().contains(keyword) || restList.get(i).getRestAddr().contains(keyword)) {
+                if (restList.get(i).getRestName().toLowerCase().contains(keyword)
+                        || restList.get(i).getRestAddr().toLowerCase().contains(keyword)) {
                     searchResultList.add(restList.get(i));
                 }
             }
