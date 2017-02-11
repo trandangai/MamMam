@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.khtn.mammam.pojo.Comment;
 import com.khtn.mammam.pojo.Rating;
 import com.khtn.mammam.pojo.Restaurant;
+import com.khtn.mammam.utils.CommentAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -38,8 +39,9 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
     private int restId;
     private TextView txtRestName, txtRestAddrr;
     private ListView lvListComment;
-    private ArrayAdapter arrayAdapter;
     private ArrayList<Comment> listComment;
+
+    private CommentAdapter commentAdapter;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -143,8 +145,8 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
 
         lvListComment = (ListView) findViewById(R.id.lvListComment);
         listComment = new ArrayList<>();
-        arrayAdapter = new ArrayAdapter<Comment>(this,android.R.layout.simple_list_item_1,listComment);
-        lvListComment.setAdapter(arrayAdapter);
+        commentAdapter = new CommentAdapter(this,listComment);
+        lvListComment.setAdapter(commentAdapter);
         BindingDataToListComment();
     }
 
@@ -190,7 +192,7 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
 
                 commentRef.setValue(tempRest);
                 listComment.add(new Comment(newCmter, newCmt));
-                arrayAdapter.notifyDataSetChanged();
+                commentAdapter.notifyDataSetChanged();
             }
         }
     }
@@ -204,6 +206,6 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
         {
             listComment.add(new Comment(listCommenters[i]+"",listComments[i]+""));
         }
-        arrayAdapter.notifyDataSetChanged();
+        commentAdapter.notifyDataSetChanged();
     }
 }
