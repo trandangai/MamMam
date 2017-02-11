@@ -72,15 +72,13 @@
 
         <activity
             android:name=".Comment_Evaluate_Activity"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/ThemeComment" />
         <activity
             android:name=".SearchRestActivity"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/ThemeComment" />
         <activity
             android:name=".CheckingActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-
-
+            android:theme="@style/ThemeComment" />
         <activity
             android:name=".DiaDiemGanToiActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>

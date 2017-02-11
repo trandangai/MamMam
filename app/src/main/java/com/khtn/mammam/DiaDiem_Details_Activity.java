@@ -72,7 +72,25 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
             final View singleFrame = getLayoutInflater().inflate(R.layout.frame_icon_caption, null);
             singleFrame.setId(i);
             ImageView icon = (ImageView) singleFrame.findViewById(R.id.icon);
-            Picasso.with(getApplicationContext()).load(restaurant.getRestImg()).into(icon);
+            if(i>0)
+            {
+                switch (i)
+                {
+                    case 1: icon.setImageResource(R.mipmap.annam1);
+                        break;
+                    case 2: icon.setImageResource(R.mipmap.annam2);
+                        break;
+                    case 3: icon.setImageResource(R.mipmap.annam3);
+                        break;
+                    case 4: icon.setImageResource(R.mipmap.annam4);
+                        break;
+                    case 5: icon.setImageResource(R.mipmap.annam5);
+                        break;
+                }
+            }
+            else {
+                Picasso.with(getApplicationContext()).load(restaurant.getRestImg()).into(icon);
+            }
             scrollViewgroup.addView(singleFrame);
         }
 

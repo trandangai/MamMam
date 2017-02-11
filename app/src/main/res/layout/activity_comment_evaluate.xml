@@ -4,112 +4,123 @@
     android:id="@+id/activity_comment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#ffffff"
     android:gravity="center"
-    tools:context="com.khtn.mammam.Comment_Evaluate_Activity"
-    android:weightSum="1">
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context="com.khtn.mammam.Comment_Evaluate_Activity">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:background="#cc0000"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#cc0000"
+        android:orientation="horizontal">
 
         <TextView
-            android:text="M"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="#ffffff"
-            android:layout_weight="0.7"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.7"
+            android:text="M"
+            android:textColor="#ffffff"
             android:textSize="30sp"
             android:textStyle="normal|bold" />
 
         <TextView
-            android:text="Bình Luận"
-            android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:layout_weight="1"
-            android:textSize="30sp"
+            android:layout_margin="10dp"
             android:layout_marginLeft="0dp"
+            android:layout_weight="1"
+            android:text="Bình Luận"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
             android:textStyle="normal|bold" />
     </LinearLayout>
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:textSize="25sp"
         android:gravity="center"
+        android:textSize="25sp"
         android:textStyle="normal|bold" />
 
     <EditText
-        android:padding="40dp"
+        android:id="@+id/editTextNoiDung"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
         android:ems="10"
-        android:hint="Nhập nội dung bình luận"
-        android:id="@+id/editTextNoiDung" />
+        android:hint="Nhập nội dung bình luận \n( tối đa 200 ký tự )"
+        android:inputType="textMultiLine"
+        android:maxLength="200"
+        android:padding="40dp" />
 
     <TextView
-        android:text="Đánh giá địa điểm"
+        android:id="@+id/lblRateMe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lblRateMe"
-        android:textSize="20sp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
+        android:text="Đánh giá địa điểm"
+        android:textSize="20sp"
         android:textStyle="normal|bold" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
-            android:stepSize="1.0"
-            android:rating="2.0" />
-
+            android:rating="3.0"
+            android:stepSize="1.0" />
 
         <TextView
             android:id="@+id/txtRatingValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2.0"
-            android:textSize="40dp"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:text="3.0"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="40dp" />
     </LinearLayout>
+
     <LinearLayout
-        android:paddingTop="10dp"
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_marginTop="30dp">
 
         <Button
+            android:id="@+id/btnXacNhan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:padding="15dp"
             android:paddingTop="10dp"
             android:text="Đồng ý"
-            android:layout_marginRight="10dp"
+            android:textSize="18sp"
+            android:theme="@style/AppTheme.ButtonAccepted" />
+
+        <Button
+            android:id="@+id/btnHuy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnXacNhan" />
-        <Button
+            android:layout_marginLeft="10dp"
+            android:padding="15dp"
             android:paddingTop="10dp"
             android:text="Hủy"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnHuy" />
+            android:textSize="18sp"
+            android:theme="@style/AppTheme.ButtonCancel" />
 
     </LinearLayout>
 

@@ -140,13 +140,13 @@
     </LinearLayout>
 
     <TextView
-        android:text="Danh sách các đánh giá"
+        android:text="Danh sách các bình luận"
         android:layout_width="match_parent"
         android:layout_margin="15dp"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
         android:textStyle="normal|bold"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:orientation="vertical"
