@@ -114,16 +114,17 @@ public class DiaDiemGanToiActivity extends AppCompatActivity implements Location
         }
 
         LocationManager locationManager = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 1000 * 60 * 1, DiaDiemGanToiActivity.this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, DiaDiemGanToiActivity.this);
         Criteria criteria = new Criteria();
         Location lastLocation = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
         if (lastLocation != null) {
             LatLng CurrentPosition = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+            //LatLng CurrentPosition = new LatLng(10.766093,106.6615025);
             this.currentLocation = CurrentPosition;
             MarkerOptions option = new MarkerOptions();
             option.position(CurrentPosition);
             option.title("Vị trí của bạn hiện tại").snippet("MamMam App");
-            option.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+            option.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
             option.alpha(0.8f);
             option.rotation(0);
             map.clear();
@@ -174,7 +175,7 @@ public class DiaDiemGanToiActivity extends AppCompatActivity implements Location
             MarkerOptions option = new MarkerOptions();
             option.position(new LatLng(restaurant.getLatitude(), restaurant.getLongitude()));
             option.title(restaurant.getRestName()).snippet(restaurant.getRestAddr());
-            option.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+            option.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
             option.alpha(0.8f);
             option.rotation(0);
             Marker maker = map.addMarker(option);
