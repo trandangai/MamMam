@@ -54,10 +54,30 @@
         </activity>
         <activity
             android:name=".DiaDiem_Details_Activity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+
+
+        </activity>
         <activity
             android:name=".SuggestionActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+            <intent-filter android:autoVerify="true">
+                <!-- Sets the intent action to view the activity -->
+                <action android:name="android.intent.action.VIEW" />
+                <!-- Allows the link to be opened from a web browser -->
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Allows the deep link to be used without specifying the app name -->
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="mammam"
+                    android:scheme="com.khtn.mammam" />
+                <data
+                    android:host="example.com"
+                    android:scheme="https"/>
+
+            </intent-filter>
+        </activity>
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
@@ -75,7 +95,19 @@
             android:theme="@style/ThemeComment" />
         <activity
             android:name=".SearchRestActivity"
-            android:theme="@style/ThemeComment" />
+            android:theme="@style/ThemeComment">
+            <intent-filter android:autoVerify="true">
+                <!-- Sets the intent action to view the activity -->
+                <action android:name="android.intent.action.VIEW" />
+                <!-- Allows the link to be opened from a web browser -->
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Allows the deep link to be used without specifying the app name -->
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="searchrestaurant"
+                    android:scheme="com.khtn.mammam" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".CheckingActivity"
             android:theme="@style/ThemeComment" />

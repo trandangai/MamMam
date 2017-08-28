@@ -1,6 +1,5 @@
 {
   "project_info": {
-
     "project_number": "510632460135",
     "firebase_url": "https://mammam-50af8.firebaseio.com",
     "project_id": "mammam-50af8",
@@ -16,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "510632460135-svpubuu788pueienbqksb38qf8mfn4vh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.khtn.mammam",
+            "certificate_hash": "6c570b4a937d4be7149062bc093c007e8b6f0c1c"
+          }
+        },
+        {
+          "client_id": "510632460135-9a1r732r5jh2qqjblqai6cub1tp80l66.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.khtn.mammam",
+            "certificate_hash": "e4ecbdcac9a357e5a5c5bdfce7a232425507e431"
+          }
+        },
+        {
           "client_id": "510632460135-l3gme68ek99hun03q6ft1483ntk0hgod.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -30,8 +45,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510632460135-l3gme68ek99hun03q6ft1483ntk0hgod.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

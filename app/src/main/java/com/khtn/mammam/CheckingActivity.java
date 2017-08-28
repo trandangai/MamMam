@@ -16,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -28,6 +29,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.share.Sharer;
@@ -41,13 +43,15 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import bolts.AppLinks;
+
 public class CheckingActivity extends AppCompatActivity {
 
     private CallbackManager callbackManager;
     private LoginManager loginManager;
     protected static final int CAMERA_REQUEST = 99;
     private Bitmap bmp;
-    private Button btnCheckin,btnHuyCheckin;
+    private Button btnCheckin, btnHuyCheckin;
     private ImageView imageViewCheckin;
     private Uri file;
     private String imgPath;
@@ -57,12 +61,30 @@ public class CheckingActivity extends AppCompatActivity {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checking);
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         FacebookSdk.sdkInitialize(getApplicationContext());
+        Uri targetUrl = AppLinks.getTargetUrlFromInboundIntent(this, getIntent());
+        if (targetUrl != null) {
+            Log.i("Activity", "App Link Target URL: " + targetUrl.toString());
+        }
+        AppEventsLogger.activateApp(this.getApplication());
+        AppLinkData.fetchDeferredAppLinkData(this, new AppLinkData.CompletionHandler() {
+            @Override
+            public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
+                if (appLinkData != null) {
+                    String a = String.valueOf(appLinkData.getTargetUri());
+                    Log.i("DEBUG_FACEBOOK_SDK", a.toString());
+                } else {
+                    Log.i("DEBUG_FACEBOOK_SDK", "AppLinkData is Null");
+                }
+            }
+        });
+
         callbackManager = CallbackManager.Factory.create();
         verifyStoragePermissions(this);
         imageViewCheckin = (ImageView) findViewById(R.id.imgViewCheckin);
@@ -170,7 +192,6 @@ public class CheckingActivity extends AppCompatActivity {
     }
 
 
-
     public Uri setImageUri() {
         // Store image in dcim
         File file = new File(Environment.getExternalStorageDirectory() + "/DCIM/Camera", "image" + new Date().getTime() + ".png");
@@ -210,7 +231,7 @@ public class CheckingActivity extends AppCompatActivity {
     }
 
     public String getAbsolutePath(Uri uri) {
-        String[] projection = { MediaStore.MediaColumns.DATA };
+        String[] projection = {MediaStore.MediaColumns.DATA};
         @SuppressWarnings("deprecation")
         Cursor cursor = managedQuery(uri, projection, null, null, null);
         if (cursor != null) {
@@ -235,15 +256,14 @@ public class CheckingActivity extends AppCompatActivity {
         }
     }
 
-    public Bitmap rotateBitmap(Bitmap bitmapOrg)
-    {
+    public Bitmap rotateBitmap(Bitmap bitmapOrg) {
         Matrix matrix = new Matrix();
 
         matrix.postRotate(90);
 
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmapOrg,bitmapOrg.getWidth(),bitmapOrg.getHeight(),true);
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmapOrg, bitmapOrg.getWidth(), bitmapOrg.getHeight(), true);
 
-        Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap , 0, 0, scaledBitmap .getWidth(), scaledBitmap .getHeight(), matrix, true);
-        return  rotatedBitmap;
+        Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
+        return rotatedBitmap;
     }
 }

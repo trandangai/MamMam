@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -13,7 +15,15 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.appinvite.AppInvite;
+import com.google.android.gms.appinvite.AppInviteInvitationResult;
+import com.google.android.gms.appinvite.AppInviteReferral;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.dynamiclinks.DynamicLink;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.khtn.mammam.utils.FirebaseUtil;
@@ -23,7 +33,7 @@ public class MainActivity extends Activity {
 
     private final int SPLASH_DISPLAY_LENGTH = 2000;
     private ProgressBar loading_wheel;
-
+    private GoogleApiClient mGoogleApiClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +43,8 @@ public class MainActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         FirebaseMessaging.getInstance().subscribeToTopic("testfcm");
-        String token= FirebaseInstanceId.getInstance().getToken();
-        Log.d("Token:",token+"");
+        String token = FirebaseInstanceId.getInstance().getToken();
+        Log.d("Token:", token + "");
         new FireBaseIDTask().execute(token);
 
         FirebaseDatabase database = FirebaseUtil.getDatabase();
@@ -44,24 +54,35 @@ public class MainActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(isInternetNetworkAccess()) {
-                    Toast.makeText(MainActivity.this,"Kiểm tra kết nối Internet thành công",Toast.LENGTH_LONG).show();
+                if (isInternetNetworkAccess()) {
+                    Toast.makeText(MainActivity.this, "Kiểm tra kết nối Internet thành công", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(MainActivity.this, SuggestionActivity.class);
                     startActivity(intent);
                     finish();
-                }
-                else {
-                    Toast.makeText(MainActivity.this,"Bạn chưa kết nối internet, vui lòng kiểm tra lại",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Bạn chưa kết nối internet, vui lòng kiểm tra lại", Toast.LENGTH_LONG).show();
                 }
             }
         }, SPLASH_DISPLAY_LENGTH);
     }
+        //Firebase dynamic link
+        DynamicLink dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+                .setLink(Uri.parse("https://example.com/"))
+                .setDynamicLinkDomain("https://g8h4x.app.goo.gl/")
+                // Open links with this app on Android
+                .setAndroidParameters(new DynamicLink.AndroidParameters.Builder().build())
+                // Open links with com.example.ios on iOS
+                .setIosParameters(new DynamicLink.IosParameters.Builder("com.example.ios").build())
+                .buildDynamicLink();
+
+        Uri dynamicLinkUri = dynamicLink.getUri();
 
     private boolean isInternetNetworkAccess()
     {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return connectivityManager.getActiveNetworkInfo()!=null;
     }
+
 
 //    public static String printKeyHash(Activity context) {
 //        PackageInfo packageInfo;

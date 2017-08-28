@@ -16,6 +16,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
@@ -29,6 +30,8 @@ import com.khtn.mammam.utils.CommentAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import bolts.AppLinks;
 
 public class DiaDiem_Details_Activity extends AppCompatActivity {
 
@@ -59,6 +62,23 @@ public class DiaDiem_Details_Activity extends AppCompatActivity {
         restaurant = (Restaurant) bundle.getSerializable("resttrans");
 
         FacebookSdk.sdkInitialize(getApplicationContext());
+        Uri targetUrl = AppLinks.getTargetUrlFromInboundIntent(this, getIntent());
+        if (targetUrl != null) {
+            Log.i("Activity", "App Link Target URL: " + targetUrl.toString());
+        }
+        AppEventsLogger.activateApp(this.getApplication());
+        AppLinkData.fetchDeferredAppLinkData(this, new AppLinkData.CompletionHandler() {
+            @Override
+            public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
+                if (appLinkData != null) {
+                    String a = String.valueOf(appLinkData.getTargetUri());
+                    Log.i("DEBUG_FACEBOOK_SDK", a.toString());
+                } else {
+                    Log.i("DEBUG_FACEBOOK_SDK", "AppLinkData is Null");
+                }
+            }
+        });
+
         callbackManager = CallbackManager.Factory.create();
 
         txtRestName = (TextView) findViewById(R.id.txtRestName);

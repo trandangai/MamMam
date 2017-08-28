@@ -135,6 +135,17 @@
         </LinearLayout>
     </LinearLayout>
 
+    <GridView
+        android:layout_width="match_parent"
+        android:id="@+id/gridSuggest"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_height="match_parent"
+        android:numColumns="2"/>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -150,14 +161,4 @@
             android:textSize="20sp"
             android:textStyle="normal|bold" />
     </LinearLayout>
-    <GridView
-        android:layout_width="match_parent"
-        android:id="@+id/gridSuggest"
-        android:verticalSpacing="10dp"
-        android:horizontalSpacing="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_height="match_parent"
-        android:numColumns="2"/>
 </LinearLayout>

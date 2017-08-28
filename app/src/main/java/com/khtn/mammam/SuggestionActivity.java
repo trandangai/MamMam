@@ -1,8 +1,10 @@
 package com.khtn.mammam;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +14,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +28,8 @@ import com.khtn.mammam.utils.FirebaseUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import bolts.AppLinks;
 
 public class SuggestionActivity extends AppCompatActivity {
 
@@ -80,7 +87,10 @@ public class SuggestionActivity extends AppCompatActivity {
 
             }
         });
-
+//        Intent intent = new Intent();
+//        String action = intent.getAction();
+//        final String data = intent.getDataString();
+//        Toast.makeText(this,"" + data, Toast.LENGTH_SHORT).show();
         gridView = (GridView) findViewById(R.id.gridSuggest);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -101,6 +111,11 @@ public class SuggestionActivity extends AppCompatActivity {
                 intent.putExtra("bundlerest",bundle);
                 for(int x=0;x<restList.size();x++)
                 {
+//                    if(restList.get(x).getRestDetailLink().equals(data))
+//                    {
+//                        intent.putExtra("restId",x);
+//                        break;
+//                    }
                     if(restList.get(x).getRestName().equals(restForsend.getRestName()))
                     {
                         intent.putExtra("restId",x);
@@ -128,8 +143,37 @@ public class SuggestionActivity extends AppCompatActivity {
                 startActivityForResult(in, 88);
             }
         });
+//        //Config app link facebook
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this.getApplication());
+        AppLinkData.fetchDeferredAppLinkData(this, new AppLinkData.CompletionHandler() {
+            @Override
+            public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
+                if (appLinkData != null) {
+                    String a = String.valueOf(appLinkData.getTargetUri());
+                    Log.i("DEBUG_FACEBOOK_SDK", a.toString());
+                } else {
+                    Log.i("DEBUG_FACEBOOK_SDK", "AppLinkData is Null");
+                }
+            }
+        });
+        Uri targetUrl =
+                AppLinks.getTargetUrlFromInboundIntent(this, getIntent());
+        if (targetUrl != null) {
+            Log.i("Activity", "App Link Target URL: " + targetUrl.toString());
+        }
     }
-
+//    protected void onNewIntent(Intent intent) {
+//        String action = intent.getAction();
+//        String data = intent.getDataString();
+//        Toast.makeText(this,"Deep link: " + data, Toast.LENGTH_SHORT).show();
+////        if (Intent.ACTION_VIEW.equals(action) && data != null) {
+////            String recipeId = data.substring(data.lastIndexOf("/") + 1);
+////            Uri contentUri = RecipeContentProvider.CONTENT_URI.buildUpon()
+////                    .appendPath(recipeId).build();
+////            showRecipe(contentUri);
+////        }
+//    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
